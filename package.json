@@ -1,0 +1,28 @@
+{
+  "name": "groupmebot",
+  "version": "1.0.0",
+  "description": "exports an express router to handle the groupme callbacks",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test-destiny": "node build/test/destiny-test",
+    "clean": "rm -rf build",
+    "build-destiny": "babel destiny -d build/destiny",
+    "build-groupme": "babel groupme -d build/groupme",
+    "build-pokeapi": "babel pokeapi -d build/pokeapi",
+    "build-ops": "babel index.js -o build/index.js && babel config.js -o build/config.js && babel ops/ -d build/ops",
+    "build-test": "babel test -d build/test", 
+    "build": "npm run build-destiny && npm run build-groupme && npm run build-pokeapi && npm run build-ops",
+    "deploy": "scp -r build/* root@ci.cmonocle.link:~/groupmeBot/"
+  },
+  "author": "Alex Petersen <theoperatore@gmail.com> (http://anpetersen.me)",
+  "license": "MIT",
+  "dependencies": {
+    "babel": "^5.8.29",
+    "cron": "^1.0.9",
+    "debug": "^2.2.0",
+    "es6-promise": "^3.0.2",
+    "express": "^4.13.3",
+    "request": "^2.65.0"
+  }
+}
